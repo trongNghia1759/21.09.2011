@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Flappy Jack</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: radial-gradient(white 1px, transparent 1px);
+      background-size: 4px 4px;
+      z-index: 0;
+    }
+
+    #container {
+      position: relative;
+      width: 400px;
+      height: 600px;
+      margin: 20px auto;
+      border: 4px solid white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 0 30px white;
+      background-color: black;
+      z-index: 1;
+    }
+
+    #game {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    #bird {
+      position: absolute;
+      left: 60px;
+      top: 200px;
+      width: 60px;
+      height: 60px;
+      z-index: 3;
+    }
+
+    #bird img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .pipe {
+      position: absolute;
+      width: 60px;
+      box-shadow: 0 0 10px white;
+      border: 2px solid white;
+      z-index: 2;
+    }
+
+    #menu, #game-over {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      z-index: 4;
+    }
+
+    button {
+      padding: 12px 24px;
+      margin-top: 20px;
+      font-size: 18px;
+      background: linear-gradient(to right, #00f2ff, #8e44ad);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #00f2ff;
+      cursor: pointer;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    #skin-selector {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 9999;
+      padding: 6px;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    #score-display {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      color: white;
+      font-size: 18px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 6px 12px;
+      border-radius: 8px;
+      z-index: 5;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Bộ chọn skin -->
+  <select id="skin-selector">
+    <option value="https://i.postimg.cc/RCNbLPc7/Messenger-creation-4-AE4-FBB8-C576-4325-BBE1-D42378827178-removebg-preview.png">🐝 Ruồi 97</option>
+    <option value="https://i.postimg.cc/1tQ2KYkR/Picsart-25-07-27-17-40-01-016.png">🐰 Thỏ 7 Màu Trắng</option>
+    <option value="https://i.postimg.cc/3xKMMw9j/Picsart-25-07-27-18-41-47-416.png">🦠 Vi-Rút :))</option>
+  </select>
+
+  <div id="container">
+    <div id="game">
+      <div id="bird">
+        <img id="bird-img" src="https://i.postimg.cc/RCNbLPc7/Messenger-creation-4-AE4-FBB8-C576-4325-BBE1-D42378827178-removebg-preview.png" alt="Bird">
+      </div>
+
+      <div id="menu">
+        <h1>Flappy Jack</h1>
+        <button onclick="startGame()">Bắt đầu chơi</button>
+      </div>
+
+      <div id="game-over" class="hidden">
+        <h2>💀 Ngu Chét Rồi</h2>
+        <p>Điểm: <span id="final-score">0</span></p>
+        <button onclick="restartGame()">Chơi lại</button>
+      </div>
+
+      <div id="score-display">Điểm: 0 | 🏆 Kỷ lục: 0</div>
+    </div>
+  </div>
+
+  <!-- Âm thanh + game logic -->
+  <script>
+    function playFlapSound() {
+      const sound = new Audio("https://media.vocaroo.com/mp3/1cjtI3SDssfx");
+      sound.volume = 0.5;
+      sound.play();
+    }
+
+    const container = document.getElementById("container");
+    const game = document.getElementById("game");
+    const bird = document.getElementById("bird");
+    const gameOverMenu = document.getElementById("game-over");
+    const menu = document.getElementById("menu");
+    const finalScore = document.getElementById("final-score");
+    const scoreDisplay = document.getElementById("score-display");
+
+    let birdTop = 200;
+    let gravity = 2;
+    let isGameOver = false;
+    let pipes = [];
+    let score = 0;
+    let highScore = localStorage.getItem("flappyHighScore") || 0;
+    let gameLoop;
+    const gap = 180;
+    let lastPipeX = 400;
+    const pipeSpacing = 220;
+
+    function getRandomColor() {
+      const colors = ['#ff0055', '#00ffee', '#00ff33', '#ffaa00', '#cc00ff', '#00aaff'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    function updateScoreDisplay() {
+      scoreDisplay.textContent = `Điểm: ${score} | 🏆 Kỷ lục: ${highScore}`;
+    }
+
+    function startGame() {
+      menu.classList.add("hidden");
+      birdTop = 200;
+      bird.style.top = "200px";
+      isGameOver = false;
+      score = 0;
+      finalScore.textContent = "0";
+      updateScoreDisplay();
+      pipes.forEach(p => {
+        game.removeChild(p.top);
+        game.removeChild(p.bottom);
+      });
+      pipes = [];
+      gameOverMenu.classList.add("hidden");
+
+      gameLoop = setInterval(() => {
+        birdTop += gravity;
+        bird.style.top = birdTop + "px";
+
+        if (!isGameOver && (pipes.length === 0 || pipes[pipes.length - 1].left < lastPipeX - pipeSpacing)) {
+          generatePipe();
+        }
+
+        pipes.forEach((pipe, index) => {
+          pipe.left -= 2;
+          pipe.top.style.left = pipe.left + "px";
+          pipe.bottom.style.left = pipe.left + "px";
+
+          if (
+            pipe.left < 100 && pipe.left + 60 > 60 &&
+            (birdTop < pipe.height || birdTop + 35 > pipe.height + gap)
+          ) {
+            endGame();
+          }
+
+          if (pipe.left + 60 < 60 && !pipe.counted) {
+            score++;
+            pipe.counted = true;
+            if (score > highScore) {
+              highScore = score;
+              localStorage.setItem("flappyHighScore", highScore);
+            }
+            updateScoreDisplay();
+          }
+
+          if (pipe.left < -60) {
+            game.removeChild(pipe.top);
+            game.removeChild(pipe.bottom);
+            pipes.splice(index, 1);
+          }
+        });
+
+        if (birdTop > 600 || birdTop < 0) {
+          endGame();
+        }
+      }, 20);
+    }
+
+    function generatePipe() {
+      if (isGameOver) return;
+
+      let pipeHeight = Math.floor(Math.random() * 250) + 50;
+      let color = getRandomColor();
+
+      let pipeTop = document.createElement("div");
+      pipeTop.className = "pipe";
+      pipeTop.style.background = color;
+      pipeTop.style.height = pipeHeight + "px";
+      pipeTop.style.top = "0";
+      pipeTop.style.left = "400px";
+
+      let pipeBottom = document.createElement("div");
+      pipeBottom.className = "pipe";
+      pipeBottom.style.background = color;
+      pipeBottom.style.height = (600 - pipeHeight - gap) + "px";
+      pipeBottom.style.bottom = "0";
+      pipeBottom.style.left = "400px";
+
+      game.appendChild(pipeTop);
+      game.appendChild(pipeBottom);
+
+      pipes.push({
+        top: pipeTop,
+        bottom: pipeBottom,
+        left: 400,
+        height: pipeHeight,
+        counted: false
+      });
+
+      lastPipeX = 400;
+    }
+
+    function endGame() {
+      clearInterval(gameLoop);
+      isGameOver = true;
+      finalScore.textContent = score;
+      updateScoreDisplay();
+      gameOverMenu.classList.remove("hidden");
+    }
+
+    function restartGame() {
+      startGame();
+    }
+
+    document.addEventListener("keydown", () => {
+      if (!isGameOver) {
+        birdTop -= 45;
+        playFlapSound();
+      }
+    });
+
+    document.addEventListener("touchstart", () => {
+      if (!isGameOver) {
+        birdTop -= 45;
+        playFlapSound();
+      }
+    });
+
+    // ✅ Thay skin
+    document.getElementById("skin-selector").addEventListener("change", function () {
+      document.getElementById("bird-img").src = this.value;
+    });
+
+    // Hiển thị điểm ngay từ đầu
+    updateScoreDisplay();
+  </script>
+
+</body>
+</html>
