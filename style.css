@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  background: radial-gradient(circle at top, #1a001f, #0a0010);
+  color: #fff;
+  padding-top: 70px; /* chừa chỗ cho navbar */
+}
+
+/* Navbar */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(10, 0, 16, 0.95);
+  border-bottom: 2px solid #ff4dd2;
+  padding: 12px 0;
+  z-index: 1000;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+nav ul li a {
+  color: #fff;
+  font-weight: bold;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  background: #ff4dd2;
+  color: #fff;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: 24px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background: linear-gradient(145deg, #2c002c, #110011);
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 20px;
+  width: 320px;
+  box-shadow: 0 0 10px #ff4dd255, 0 0 20px #ff4dd222;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px #ff4dd2cc;
+  border: 2px solid #ff4dd2;
+}
+
+.card h3 {
+  color: #ff99dd;
+  margin-bottom: 10px;
+}
+
+.card ul {
+  list-style-type: "🔥 ";
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 6px;
+}
+
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.section-header__line {
+  width: 100%;
+  border: none;
+  border-top: 2px solid #fff;
+  opacity: .95;
+}
+
+.section-header__title {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(20px,2.5vw,28px);
+  letter-spacing: .2px;
+}
