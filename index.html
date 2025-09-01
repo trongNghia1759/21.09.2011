@@ -2,20 +2,36 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trang Chủ - Dịch Vụ MXH</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>👑 Dịch Vụ MXH - Trang Chủ</h1>
+  <!-- Navbar -->
   <nav>
-    <ul>
-      <li><a href="locket.html">Locket</a></li>
-      <li><a href="mxh.html">MXH</a></li>
-      <li><a href="napgame.html">Nạp Game</a></li>
-      <li><a href="app.html">App Premium</a></li>
-      <li><a href="website.html">Tạo Website</a></li>
-    </ul>
+    <div class="nav-container">
+      <div class="logo">👑 Dịch Vụ MXH</div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+      <ul id="menu">
+        <li><a href="index.html" class="active">Trang Chủ</a></li>
+        <li><a href="locket.html">Locket</a></li>
+        <li><a href="mxh.html">MXH</a></li>
+        <li><a href="napgame.html">Nạp Game</a></li>
+        <li><a href="app.html">App Premium</a></li>
+        <li><a href="website.html">Tạo Website</a></li>
+      </ul>
+    </div>
   </nav>
-  <p style="text-align:center; margin-top:20px;">Chọn dịch vụ bạn quan tâm ở menu trên 👆</p>
+
+  <h1 style="text-align:center; margin-top:40px;">Trang Chủ</h1>
+  <p style="text-align:center;">Chọn dịch vụ bạn cần trong menu ☰ ở góc trên trái.</p>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("active");
+    }
+  </script>
 </body>
 </html>

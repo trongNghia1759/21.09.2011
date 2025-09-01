@@ -2,27 +2,54 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Nạp Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a href="index.html">⬅ Quay lại Trang Chủ</a>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">👑 Dịch Vụ MXH</div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+      <ul id="menu">
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="locket.html">Locket</a></li>
+        <li><a href="mxh.html">MXH</a></li>
+        <li><a href="napgame.html" class="active">Nạp Game</a></li>
+        <li><a href="app.html">App Premium</a></li>
+        <li><a href="website.html">Tạo Website</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="section-header">
     <hr class="section-header__line">
-    <h2 class="section-header__title">Giá Nạp Game</h2>
+    <h2 class="section-header__title">Nạp Game Giá Rẻ</h2>
   </div>
 
   <div class="container">
     <div class="card">
-      <h3>⚡ Free Fire - Liên Quân</h3>
+      <h3>💎 Free Fire</h3>
       <ul>
-        <li>51 KC | 20 QH – 10.000đ</li>
-        <li>113 KC | 40 QH – 20.000đ</li>
-        <li>283 KC | 102 QH – 50.000đ</li>
-        <li>566 KC | 204 QH – 100.000đ</li>
-        <li>2.830 KC | 1.020 QH – 500.000đ</li>
+        <li>Giảm 30% so với thẻ</li>
+        <li>Nạp nhanh 24/7</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>💎 Liên Quân</h3>
+      <ul>
+        <li>Chiết khấu cao</li>
+        <li>Uy tín - bảo mật</li>
       </ul>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("active");
+    }
+  </script>
 </body>
 </html>

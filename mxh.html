@@ -2,43 +2,56 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Dịch Vụ Mạng Xã Hội</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dịch Vụ MXH</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a href="index.html">⬅ Quay lại Trang Chủ</a>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">👑 Dịch Vụ MXH</div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+      <ul id="menu">
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="locket.html">Locket</a></li>
+        <li><a href="mxh.html" class="active">MXH</a></li>
+        <li><a href="napgame.html">Nạp Game</a></li>
+        <li><a href="app.html">App Premium</a></li>
+        <li><a href="website.html">Tạo Website</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="section-header">
     <hr class="section-header__line">
-    <h2 class="section-header__title">Dịch Vụ Mạng Xã Hội</h2>
+    <h2 class="section-header__title">Dịch Vụ MXH</h2>
   </div>
 
   <div class="container">
     <div class="card">
-      <h3>📱 TikTok</h3>
+      <h3>🔥 TikTok Pro</h3>
       <ul>
-        <li>1.5k / 100 tim</li>
-        <li>2k / 10.000 view</li>
-        <li>10k / 100 follower</li>
+        <li>Tăng follow thật</li>
+        <li>Tăng view nhanh</li>
+        <li>Bảo hành uy tín</li>
       </ul>
     </div>
-
     <div class="card">
-      <h3>📱 Facebook</h3>
+      <h3>🔥 Facebook Ads</h3>
       <ul>
-        <li>1.5k / 50 cảm xúc</li>
-        <li>2k / 1.000 view</li>
-        <li>10k / 100 follower</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>📱 Instagram</h3>
-      <ul>
-        <li>1k / 100 like</li>
-        <li>2k / 1.000 view</li>
-        <li>10k / 150 follower</li>
+        <li>Tăng like page</li>
+        <li>Tăng tương tác</li>
+        <li>Giá rẻ chất lượng</li>
       </ul>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("active");
+    }
+  </script>
 </body>
 </html>

@@ -2,35 +2,54 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>App Premium</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <a href="index.html">⬅ Quay lại Trang Chủ</a>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">👑 Dịch Vụ MXH</div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+      <ul id="menu">
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="locket.html">Locket</a></li>
+        <li><a href="mxh.html">MXH</a></li>
+        <li><a href="napgame.html">Nạp Game</a></li>
+        <li><a href="app.html" class="active">App Premium</a></li>
+        <li><a href="website.html">Tạo Website</a></li>
+      </ul>
+    </div>
+  </nav>
+
   <div class="section-header">
     <hr class="section-header__line">
-    <h2 class="section-header__title">App Pro - Premium</h2>
+    <h2 class="section-header__title">App Premium</h2>
   </div>
 
   <div class="container">
     <div class="card">
-      <h3>📲 IOS</h3>
+      <h3>📱 Netflix</h3>
       <ul>
-        <li>Locket Gold IOS 3s: 30k</li>
-        <li>Locket Gold IOS 15s: 45k</li>
-        <li>Picsart Prem: 15k</li>
+        <li>Full HD 4K</li>
+        <li>Gia hạn tự động</li>
       </ul>
     </div>
-
     <div class="card">
-      <h3>🤖 Android</h3>
+      <h3>📱 Spotify</h3>
       <ul>
-        <li>Duolingo Max: 15k</li>
-        <li>Locket Gold 3s: 20k</li>
-        <li>NGL Pro: 10k</li>
-        <li>Remini Prem: 10k</li>
+        <li>Nghe nhạc không quảng cáo</li>
+        <li>Gói Premium Family</li>
       </ul>
     </div>
   </div>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("active");
+    }
+  </script>
 </body>
 </html>
