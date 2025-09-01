@@ -8,7 +8,8 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 1.6;
   background: radial-gradient(circle at top, #1a001f, #0a0010);
   color: #fff;
   padding-top: 70px; /* chừa chỗ cho navbar */
@@ -30,11 +31,8 @@ nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  gap: 15px;
-}
-
-nav ul li {
-  display: inline-block;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 nav ul li a {
@@ -43,6 +41,7 @@ nav ul li a {
   padding: 8px 14px;
   border-radius: 8px;
   transition: 0.3s;
+  font-size: clamp(12px, 2vw, 15px);
 }
 
 nav ul li a:hover,
@@ -51,30 +50,38 @@ nav ul li a.active {
   color: #fff;
 }
 
+/* Header */
 h1, h2, h3 {
   text-align: center;
   margin-bottom: 12px;
 }
 
+h1 {
+  font-size: clamp(20px, 4vw, 32px);
+}
+
 h2 {
-  font-size: 24px;
+  font-size: clamp(18px, 3vw, 26px);
   text-transform: uppercase;
   color: #fff;
 }
 
+/* Container responsive */
 .container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 20px;
-  justify-content: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
+/* Card */
 .card {
   background: linear-gradient(145deg, #2c002c, #110011);
   border: 2px solid transparent;
   border-radius: 16px;
   padding: 20px;
-  width: 320px;
   box-shadow: 0 0 10px #ff4dd255, 0 0 20px #ff4dd222;
   transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
 }
@@ -88,6 +95,7 @@ h2 {
 .card h3 {
   color: #ff99dd;
   margin-bottom: 10px;
+  font-size: clamp(16px, 2.5vw, 20px);
 }
 
 .card ul {
@@ -97,14 +105,18 @@ h2 {
 
 li {
   margin-bottom: 6px;
+  font-size: clamp(13px, 2vw, 15px);
 }
 
+/* Section header */
 .section-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  margin: 20px 0;
+  margin: 20px auto;
+  max-width: 800px;
+  padding: 0 10px;
 }
 
 .section-header__line {
