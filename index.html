@@ -3,35 +3,486 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trang Chủ - Dịch Vụ MXH</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Trang Cá Nhân</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Fredoka', sans-serif;
+    }
+
+   body {
+  background: #fff; /* nền trắng */
+  color: #000;      /* chữ đen */
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+}
+
+    .avatar-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-top: 30px;
+      width: 150px;
+    }
+
+    .avatar-border {
+      width: 120px;
+      height: 120px;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      z-index: 0;
+    }
+
+    .avatar {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-top: 20px;
+      color: #000;
+    }
+
+    .desc {
+      color: #00f7ff;
+      margin-top: 10px;
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    .divider {
+  border: none;
+  border-top: 1px solid #000; /* gạch ngang đen */
+  width: 80%;
+  margin: 20px auto;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2); /* bóng đen */
+}
+    .zalo-box {
+      margin: 15px 0;
+      font-weight: bold;
+      color: #000;
+      background: #00f7ff;
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    .button {
+  display: block;
+  margin: 8px auto;
+  width: 85%;
+  max-width: 240px;
+  background: #000;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid hotpink;
+  font-size: 12px;
+  transition: 0.3s;
+  text-decoration: none;
+  box-shadow: 0 0 4px hotpink;
+  outline: none;
+  -webkit-tap-highlight-color: transparent; /* Chặn viền xanh khi tap trên thiết bị cảm ứng */
+}
+
+.button:hover {
+  background: #111; /* Giữ nền tối, không đổi màu */
+  color: hotpink;
+  box-shadow: 0 0 6px hotpink;
+}
+
+.button:focus {
+  outline: none;
+  background: #111; /* Không thay đổi màu khi focus */
+  color: hotpink;
+  box-shadow: 0 0 6px hotpink;
+}
+
+.button:active {
+  background: #111; /* Tránh nền bị sáng xanh khi nhấn giữ */
+  color: hotpink;
+  box-shadow: 0 0 8px hotpink;
+}
+
+.button:hover {
+  background: hotpink;
+  color: #000;
+}
+
+.button:hover {
+  background: hotpink;
+  color: #000;
+}
+    .button:hover {
+      background: cyan;
+      color: #000;
+    }
+
+  .glow-button {
+  position: relative;
+  padding: 10px 20px;
+  font-size: 12px;
+  border: none;
+  border-radius: 14px;
+  background-color: black; /* Nền đen */
+  color: white; /* Chữ trắng */
+  cursor: pointer;
+  z-index: 1;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3); /* Phát sáng nhẹ */
+  overflow: hidden;
+}
+
+.rainbow-wrapper {
+  position: relative;
+  display: block;
+  width: 85%;
+  max-width: 240px;
+  margin: 12px auto;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-size: 600% 600%;
+  animation: moveRainbow 5s linear infinite;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+@keyframes moveRainbow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.rainbow-button-text {
+  display: block;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 13px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: bold;
+}
+@keyframes rainbow-border {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+@keyframes rainbow-border {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px #1e90ff; }
+      50% { box-shadow: 0 0 15px #1e90ff; }
+      100% { box-shadow: 0 0 5px #1e90ff; }
+    }
+
+    .qr-section img {
+      width: 100%;
+      max-width: 160px;
+    }
+
+    .qr-section h2 {
+      font-size: 16px;
+    }
+
+    /* Responsive mô tả, heading */
+    .desc, .zalo-box {
+      font-size: 13px;
+    }
+
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 20px;
+      }
+    }
+    
+    .triple-color-btn-wrapper {
+  position: relative;
+  display: block;
+  width: 85%;
+  max-width: 240px;
+  margin: 12px auto;
+  border-radius: 14px;
+  padding: 2px;
+  background: linear-gradient(270deg, hotpink, limegreen, cyan, hotpink);
+  background-size: 400% 400%;
+  animation: tripleColorMove 5s linear infinite;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+@keyframes tripleColorMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+.download-btn {
+  display: block;
+  margin: 8px auto;
+  width: 85%;
+  max-width: 240px;
+  background: #000;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  text-decoration: none;
+  border: 3px solid;
+  border-image: linear-gradient(to right, hotpink, limegreen, deepskyblue) 1;
+  box-shadow: 0 0 12px hotpink, 0 0 12px limegreen, 0 0 12px deepskyblue;
+}
+
+
+
+#mascot-label {
+  position: fixed;
+  bottom: 0px;
+  right: 20px;
+  width: auto;
+  max-width: 160px;
+  padding: 6px 10px;
+  background-color: white !important;
+  color: black !important;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+  z-index: 998;
+  pointer-events: none;
+}
+  </style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav>
-    <div class="nav-container">
-      <div class="logo">👑 Dịch Vụ MXH</div>
-      <div class="hamburger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-      </div>
-      <ul id="menu">
-        <li><a href="index.html" class="active">Trang Chủ</a></li>
-        <li><a href="locket.html">Locket</a></li>
-        <li><a href="mxh.html">MXH</a></li>
-        <li><a href="napgame.html">Nạp Game</a></li>
-        <li><a href="app.html">App Premium</a></li>
-        <li><a href="website.html">Tạo Website</a></li>
-      </ul>
-    </div>
-  </nav>
+<!-- Menu điều hướng -->
+<button class="menu-toggle" onclick="document.querySelector('.side-menu').classList.toggle('open')">
+  ☰
+</button>
+<div class="side-menu">
+  <h2>Danh Mục</h2>
+  <a href="index.html">🏠 Trang Chủ (TCN)</a>
+  <a href="khodv.html">💰 Kho Dịch Vụ</a>
 
-  <h1 style="text-align:center; margin-top:40px;">Trang Chủ</h1>
-  <p style="text-align:center;">Chọn dịch vụ bạn cần trong menu ☰ ở góc trên trái.</p>
+</div>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById("menu").classList.toggle("active");
+<style>
+.menu-toggle {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 10001;
+  background: transparent;
+  border: none;
+  font-size: 26px;
+  color: #ff4dd2;
+  cursor: pointer;
+}
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -240px;
+  width: 240px;
+  height: 100%;
+  background: #1a001f;
+  padding: 60px 20px;
+  transition: left 0.3s ease;
+  box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+  z-index: 10000;
+}
+.side-menu.open { left: 0; }
+.side-menu h2 {
+  color: #ff99dd;
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-align: center;
+}
+.side-menu a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 0;
+  border-bottom: 1px solid #444;
+  transition: all 0.3s;
+  font-size: 13px;
+}
+.side-menu a:hover { color: #ff4dd2; transform: translateX(4px); }
+</style>
+
+<!-- Hiệu ứng hoa rơi -->
+<style>
+  .flower {
+    position: fixed;
+    top: -50px;
+    font-size: 20px;
+    animation: fall linear infinite;
+   
+  z-index: -1; /* Đặt giá trị âm để nó nằm dưới mọi thứ */
+
+
+    pointer-events: none;
+  }
+  @keyframes fall {
+    to {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
     }
-  </script>
+  }
+  .rainbow-button {
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(270deg, red, orange, yellow, green, blue, indigo, violet, red);
+  background-size: 1400% 1400%;
+  animation: rainbowMove 6s linear infinite;
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.5); /* ánh sáng tĩnh */
+  transition: transform 0.2s;
+}
+
+.rainbow-button:hover {
+  transform: scale(1.05);
+}
+
+@keyframes rainbowMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes rainbowMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(255,255,255,0.6), 0 0 24px rgba(255,255,255,0.4);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255,255,255,1), 0 0 40px rgba(255,255,255,0.8);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(255,255,255,0.6), 0 0 20px rgba(255,255,255,0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255,255,255,1), 0 0 30px rgba(255,255,255,0.8);
+  }
+}
+</style>
+<script>
+  function createFlower() {
+    const flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.animationDuration = 3 + Math.random() * 5 + "s";
+    flower.innerText = "";
+    document.body.appendChild(flower);
+    setTimeout(() => flower.remove(), 8000);
+  }
+  setInterval(createFlower, 300);
+</script>
+
+<!-- Avatar -->
+<div class="avatar-wrapper">
+  <img src="nguyenthanhbinh.png" class="avatar-border" alt="Viền PNG">
+  <img src="logo.png" class="avatar" alt="Avatar">
+</div>
+
+<!-- Tên + tick -->
+<h1>🔥• @tbinhuplocketgold
+  <img src="https://i.postimg.cc/zfdHxRYf/IMG-20250729-173606-preview-rev-1.png" alt="tick xanh" style="width: 14px; height: 14px; vertical-align: middle; margin-left: 6px;">
+</h1>
+
+<!-- Mô tả -->
+<div class="desc">
+  🌸UP LOCKET GOLD🌸<br>
+Liên hệ qua Facebook vs Zalo bên dưới 👇<br>
+💢Tuyệt đối không liên quan tới ICloud💢
+</div>
+
+<hr class="divider" />
+<!-- Zalo Box -->
+<button class="rainbow-button">Liên hệ ngay</button>
+<br>
+
+
+
+
+
+
+<div class="rainbow-wrapper">
+  <a href="#" target="_blank" class="rainbow-button-text">Zalo: 0846553667</a></div>
+  <div class="rainbow-wrapper">
+  <a href="https://www.facebook.com/nguyen.thanh.binh.236261"
+  target="_blank"
+  class="rainbow-button-text">FB: Nguyễn Thanh Bình</a>
+  </div>
+  
+<hr class="divider" />
+
+<body>
+  <!-- Bot và nhạc -->
+  <img src="https://i.postimg.cc/zvBtGJQB/cute-robot-waving-hand-cartoon-illustration-138676-2744-preview-rev-1.png" id="mascot-bot">
+<div id="mascot-label">Phát nhạc, click 👆</div>
+
+<audio id="mascot-audio" src="https://files.catbox.moe/dha6ws.mp3"></audio>
+
+<script>
+  const mascotBot = document.getElementById("mascot-bot");
+  const mascotAudio = document.getElementById("mascot-audio");
+
+  mascotBot.addEventListener("click", function () {
+    if (mascotAudio.paused) {
+      mascotAudio.play();
+    } else {
+      mascotAudio.pause();
+    }
+  });
+</script>
+
+<style>
+  #mascot-bot {
+    position: fixed;
+    bottom: 40px;
+    right: 20px;
+    width: 80px;
+    cursor: pointer;
+    z-index: 999;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+  }
+
+  #mascot-label {
+    position: fixed;
+    bottom: 0px;
+    right: 15px;
+    width: 90px;
+    text-align: center;
+    font-size: 13px;
+    color: pink;
+    font-weight: bold;
+    text-shadow: 0 0 4px hotpink;
+    z-index: 998;
+    pointer-events: none;
+  }
+</style>
 </body>
 </html>
