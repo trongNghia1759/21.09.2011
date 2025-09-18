@@ -55,9 +55,75 @@
   </style>
 </head>
 <body>
+<body>
+  <!-- Overlay thông báo -->
+  <div id="loadingScreen">
+    <div class="notice">📱 Xoay ngang màn hình để có trải nghiệm tốt nhất trên điện thoại</div>
+  </div>
+
+  <!-- Nội dung chính của web -->
+  <div id="mainContent" style="display:none;">
+    <!-- Toàn bộ nội dung web của bạn đặt ở đây -->
+    <h1>Trang Chính</h1>
+    <p>Nội dung web bắt đầu sau 5 giây.</p>
+  </div>
+
+  <style>
+    /* Màn hình đen */
+    #loadingScreen {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-family: sans-serif;
+      z-index: 99999;
+    }
+
+    .notice {
+      padding: 15px 25px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #fff;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    /* Hiệu ứng mờ dần */
+    .fade-out {
+      animation: fadeOut 1s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+  </style>
+
+  <script>
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const loading = document.getElementById("loadingScreen");
+        const main = document.getElementById("mainContent");
+
+        loading.classList.add("fade-out");
+
+        // sau khi fade-out xong thì hiển thị nội dung
+        setTimeout(() => {
+          loading.style.display = "none";
+          main.style.display = "block";
+        }, 1000); // trễ theo thời gian animation fadeOut (1s)
+      }, 5000); // giữ màn hình đen 5 giây
+    });
+  </script>
+</body>
   <canvas id="canvas"></canvas>
   <div id="text-display"></div> 
-  <img id="image-display" src="kimphuc." alt="Ảnh yêu thương">
+  <img id="image-display" src="kimphuc.jpg" alt="Ảnh yêu thương">
 
   <script>
     const canvas = document.getElementById('canvas');
@@ -77,16 +143,20 @@
 
     // --- Cấu hình Chữ ở giữa (Dễ dàng thay đổi) ---
     // Bo thay đổi nội dung chữ ở đây
-    const flashMessages = [
-      "Sinh Nhật",
-      "Gửi Bạn Nhỏ",
-      "21.9.2011",
-      "Sinh Nhật Vui Vẻ",
-      "Mau Lớn Nha",
-      "Cố Gắng Thành Công Trước 25T",
-      "Happy Birthday",
-    ];
-
+   const flashMessages = [
+   "3",
+   "2",
+   "1",
+   "Trần Thị Kim Phúc",
+   "21.9.2011",
+   "Anh Bo Chúc Em",
+  "Chúc Vui Vẻ 🎉",
+  "Tuổi Mới Hạnh Phúc 💖",
+  "Luôn Tươi Cười 😍",
+  "Ngập Tràn Yêu Thương 🌸",
+  "Mãi Dễ Thương 🐰",
+  "Happy B-Day 🎁",
+];
     let currentMessageIndex = 0;
     const messageDuration = 2000; // 2 giây mỗi lần hiện/ẩn
 
@@ -166,5 +236,6 @@
       canvas.height = window.innerHeight;
     });
   </script>
+  
 </body>
 </html>
